@@ -5,9 +5,9 @@ from src.task_manager import TaskManager
 def notes_menu(note_manager):
     while True:
         print("\n------ NOTES ------")
-        print("1. Add Note")
-        print("2. View Notes")
-        print("3. Delete Note")
+        print("1. Add Note in it")
+        print("2. View Notes of it ")
+        print("3. Delete Note in it")
         print("4. Back")
 
         choice = input("Enter your choice: ")
