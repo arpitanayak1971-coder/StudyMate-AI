@@ -95,9 +95,9 @@ def main():
     task_manager = TaskManager()
 
     while True:
-        print("\n==============================")
+        print("\n============================== ")
         print("        STUDYMATE AI")
-        print("==============================")
+        print("============================== ")
         print("1. Notes")
         print("2. Study Tasks")
         print("3. Exit")
@@ -111,7 +111,7 @@ def main():
             task_menu(task_manager)
 
         elif choice == "3":
-            print("\nThank you for using StudyMate AI!")
+            print("\nThank you for using StudyMate AI !")
             break
 
         else:
