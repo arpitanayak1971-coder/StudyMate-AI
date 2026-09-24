@@ -34,4 +34,4 @@ Each development stage is documented through GitHub commits.
 
 ## Author
 
-Arpita Nayak
+Arpita Nayak(Owner)
