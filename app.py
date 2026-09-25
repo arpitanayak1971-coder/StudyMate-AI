@@ -1,3 +1,4 @@
+from src.study_planner import StudyPlanner
 from src.notes import NoteManager
 from src.task_manager import TaskManager
 #day 4      
@@ -93,6 +94,7 @@ def task_menu(task_manager):
 def main():
     note_manager = NoteManager()
     task_manager = TaskManager()
+    planner= StudyPlanner()
 
     while True:
         print("\n============================== ")
@@ -100,7 +102,8 @@ def main():
         print("============================== ")
         print("1. Notes")
         print("2. Study Tasks")
-        print("3. Exit")
+        print("3. Study Planner")
+        print("4. Exit")
 
         choice = input("Enter your choice: ")
 
@@ -111,6 +114,12 @@ def main():
             task_menu(task_manager)
 
         elif choice == "3":
+            subject = input("Enter subject: ")
+            hours = input("How many hours can you study? ")
+
+            print(planner.create_plan(subject, hours))
+
+        elif choice == "4":
             print("\nThank you for using StudyMate AI !")
             break
 
