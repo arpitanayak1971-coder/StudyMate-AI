@@ -1,7 +1,7 @@
 from src.study_planner import StudyPlanner
 from src.notes import NoteManager
 from src.task_manager import TaskManager
-#day 4      
+#day 5 add study planner     
 
 def notes_menu(note_manager):
     while True:
