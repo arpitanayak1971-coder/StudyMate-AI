@@ -1,6 +1,7 @@
 from src.study_planner import StudyPlanner
 from src.notes import NoteManager
 from src.task_manager import TaskManager
+import numpy as np
 #day 5 add study planner     
 
 def notes_menu(note_manager):
