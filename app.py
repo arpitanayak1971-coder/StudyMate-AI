@@ -1,6 +1,18 @@
 from src.study_planner import StudyPlanner
 from src.notes import NoteManager
 from src.task_manager import TaskManager
+def get_positive_number(prompt):
+    while True:
+        try:
+            value = float(input(prompt))
+
+            if value > 0:
+                return value
+
+            print("Please enter a number greater than 0.")
+
+        except ValueError:
+            print("Please enter a valid number.")
 
 #day 5 add study planner     
 
@@ -116,10 +128,12 @@ def main():
 
         elif choice == "3":
             subject = input("Enter subject: ")
-            hours = input("How many hours can you study? ")
+
+            hours = get_positive_number(
+                "How many hours can you study? "
+            )
 
             print(planner.create_plan(subject, hours))
-
         elif choice == "4":
             print("\nThank you for using StudyMate AI !")
             break
