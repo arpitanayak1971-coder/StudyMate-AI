@@ -1,12 +1,31 @@
-class TaskManager: #taskmanager class object 
+import json
+import os
+
+
+class TaskManager:
     def __init__(self):
+        self.file_path = "data/tasks.json"
         self.tasks = []
+
+        self.load_tasks()
+
+    def load_tasks(self):
+        if os.path.exists(self.file_path):
+            with open(self.file_path, "r") as file:
+                self.tasks = json.load(file)
+
+    def save_tasks(self):
+        with open(self.file_path, "w") as file:
+            json.dump(self.tasks, file, indent=4)
 
     def add_task(self, task):
         self.tasks.append({
             "task": task,
             "completed": False
         })
+
+        self.save_tasks()
+
         print(f"Task added: {task}")
 
     def show_tasks(self):
@@ -23,24 +42,9 @@ class TaskManager: #taskmanager class object
     def complete_task(self, task_number):
         if 1 <= task_number <= len(self.tasks):
             self.tasks[task_number - 1]["completed"] = True
+
+            self.save_tasks()
+
             print("Task completed!")
         else:
             print("Invalid task number.")
-
-
-def main():
-    manager = TaskManager()
-
-    manager.add_task("Study Python")
-    manager.add_task("Practice Machine Learning")
-    manager.add_task("Read GenAI basics")
-
-    manager.show_tasks()
-
-    manager.complete_task(1)
-
-    manager.show_tasks()
-
-
-if __name__ == "__main__":
-    main()
