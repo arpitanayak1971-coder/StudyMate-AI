@@ -14,7 +14,7 @@ def get_positive_number(prompt):
         except ValueError:
             print("Please enter a valid number.")
 
-#day 5 add study planner     
+#day 7 IMproving app
 
 def notes_menu(note_manager):
     while True:
