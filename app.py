@@ -1,6 +1,7 @@
 from src.study_planner import StudyPlanner
 from src.notes import NoteManager
 from src.task_manager import TaskManager
+from src.text_processor import TextProcessor
 def get_positive_number(prompt):
     while True:
         try:
@@ -108,6 +109,7 @@ def main():
     note_manager = NoteManager()
     task_manager = TaskManager()
     planner= StudyPlanner()
+    processor=TextProcessor()
 
     while True:
         print("\n============================== ")
@@ -116,7 +118,8 @@ def main():
         print("1. Notes")
         print("2. Study Tasks")
         print("3. Study Planner")
-        print("4. Exit")
+        print("4. Text Processor")
+        print("5. Exit")
 
         choice = input("Enter your choice: ")
 
@@ -134,7 +137,16 @@ def main():
             )
 
             print(planner.create_plan(subject, hours))
+
         elif choice == "4":
+            text = input("Enter text to analyze: ")
+
+            print("\n------ TEXT ANALYSIS ------")
+
+            print(f"Word count: {processor.word_count(text)}")
+            print(f"Character count: {processor.character_count(text)}")
+            print(f"Common words: {processor.most_common_words(text)}")
+        elif choice == "5":
             print("\nThank you for using StudyMate AI !")
             break
 
