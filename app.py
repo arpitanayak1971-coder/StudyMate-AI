@@ -2,8 +2,7 @@ from src.study_planner import StudyPlanner
 from src.notes import NoteManager
 from src.task_manager import TaskManager
 from src.text_processor import TextProcessor
-import numpy as np
-#day 8 
+#day 9
 def get_positive_number(prompt):
     while True:
         try:
