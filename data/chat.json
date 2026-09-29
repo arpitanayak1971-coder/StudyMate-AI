@@ -1,1 +1,15 @@
-[]
+{
+  "chat_id": "chat_01",
+  "participants": [
+    { "user_id": "u_1", "name": "Alice" },
+    { "user_id": "u_2", "name": "Bob" }
+  ],
+  "messages": [
+    {
+      "message_id": "m_1",
+      "sender_id": "u_1",
+      "text": "Hello, how are you?",
+      "timestamp": 1785523200
+    }
+  ]
+}
