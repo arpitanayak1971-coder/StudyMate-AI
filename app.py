@@ -147,7 +147,11 @@ def main():
 
             print(f"Word count: {processor.word_count(text)}")
             print(f"Character count: {processor.character_count(text)}")
-            print(f"Common words: {processor.most_common_words(text)}")
+
+            meaningful_words = processor.remove_stop_words(text)
+
+            print(f"Meaningful words: {len(meaningful_words)}")
+            print(f"Common meaningful words: {processor.most_common_words(text)}")
         elif choice == "5":
             print("\nThank you for using StudyMate AI !")
             break
