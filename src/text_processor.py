@@ -40,6 +40,16 @@ class TextProcessor:
         ]
 
         return meaningful_words
+    def extract_keywords(self, text, limit=5):
+        meaningful_words = self.remove_stop_words(text)
+
+        word_frequency = Counter(meaningful_words)
+
+        keywords = [
+            word for word, count in word_frequency.most_common(limit)
+        ]
+
+        return keywords
 
     def most_common_words(self, text, limit=5):
         meaningful_words = self.remove_stop_words(text)
