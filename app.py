@@ -151,6 +151,7 @@ def main():
 
             print(f"Meaningful words: {len(meaningful_words)}")
             print(f"Common meaningful words: {processor.most_common_words(text)}")
+            print(f"Keywords: {processor.extract_keywords(text)}")
         elif choice == "5":
             print("\nThank you for using StudyMate AI !")
             break
