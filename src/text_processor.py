@@ -50,6 +50,15 @@ class TextProcessor:
         ]
 
         return keywords
+    def estimate_reading_time(self, text, words_per_minute=200):
+        word_count = self.word_count(text)
+
+        if word_count == 0:
+            return 0
+
+        reading_time = word_count / words_per_minute
+
+        return round(reading_time, 2)
 
     def most_common_words(self, text, limit=5):
         meaningful_words = self.remove_stop_words(text)
