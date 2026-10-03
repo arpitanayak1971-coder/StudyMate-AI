@@ -5,6 +5,7 @@ from src.text_processor import TextProcessor
 import numpy as np 
 #day 12
 print(np.arange(1,7))
+print ("hello")
 def get_positive_number(prompt):
     while True:
         try:
