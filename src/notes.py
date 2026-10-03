@@ -1,4 +1,5 @@
 import json
+from collections import Counter 
 import os
 
 
@@ -39,6 +40,19 @@ class NoteManager:
 
     def get_notes(self):
         return self.notes
+    def get_statistics(self):
+        subject_counts = Counter()
+        topic_counts = Counter()
+
+        for note in self.notes:
+            subject_counts[note["subject"]] += 1
+            topic_counts[note["topic"]] += 1
+
+        return {
+            "total_notes": len(self.notes),
+            "subjects": dict(subject_counts),
+            "topics": dict(topic_counts)
+        }
 
     def delete_note(self, note_id):
         for note in self.notes:

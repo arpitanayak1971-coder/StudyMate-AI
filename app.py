@@ -20,12 +20,12 @@ def get_positive_number(prompt):
 
 def notes_menu(note_manager):
     while True:
-        print("\n------ NOTES ------")
-        print("1. Add Note in it")
-        print("2. View Notes of it ")
-        print("3. Delete Note in it")
-        print("4. Back")
-
+        print("1. Add Note")
+        print("2. View Notes")
+        print("3. Search Notes")
+        print("4. Note Statistics")
+        print("5. Delete Note")
+        print("6. Back")
         choice = input("Enter your choice: ")
 
         if choice == "1":
@@ -68,6 +68,38 @@ def notes_menu(note_manager):
                 print("\nPlease enter a valid number.")
 
         elif choice == "4":
+            stats = note_manager.get_statistics()
+
+            print("\n------ NOTE STATISTICS ------")
+            print(f"Total notes: {stats['total_notes']}")
+
+            print("\nNotes by subject:")
+
+            if stats["subjects"]:
+                for subject, count in stats["subjects"].items():
+                    print(f"- {subject}: {count}")
+            else:
+                print("No subjects available.")
+
+            print("\nNotes by topic:")
+
+            if stats["topics"]:
+                for topic, count in stats["topics"].items():
+                    print(f"- {topic}: {count}")
+            else:
+                print("No topics available.")
+        elif choice == "5":
+            try:
+                note_id = int(input("Enter note ID: "))
+
+                if note_manager.delete_note(note_id):
+                    print("\nNote deleted successfully!")
+                else:
+                    print("\nNote not found.")
+
+            except ValueError:
+                print("\nPlease enter a valid number.")
+        elif choice == "6":
             break
 
         else:
