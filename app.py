@@ -1,11 +1,14 @@
 from src.study_planner import StudyPlanner
 from src.notes import NoteManager
+from src.analytics import NoteAnalytics
 from src.task_manager import TaskManager
 from src.text_processor import TextProcessor
+
 import numpy as np 
 #day 12
 print(np.arange(1,7))
 print ("hello")
+
 def get_positive_number(prompt):
     while True:
         try:
@@ -144,7 +147,8 @@ def task_menu(task_manager):
 def main():
     note_manager = NoteManager()
     task_manager = TaskManager()
-    planner= StudyPlanner()
+    planner = StudyPlanner()
+    analytics = NoteAnalytics(note_manager.get_notes())
     processor=TextProcessor()
 
     while True:
@@ -154,8 +158,9 @@ def main():
         print("1. Notes")
         print("2. Study Tasks")
         print("3. Study Planner")
-        print("4. Text Processor")
-        print("5. Exit")
+        print("4. Text Analyzer")
+        print("5. Note Analytics")
+        print("6. Exit")
 
         choice = input("Enter your choice: ")
 
@@ -189,9 +194,15 @@ def main():
             print(f"Keywords: {processor.extract_keywords(text)}")
             print(f"Estimated reading time: {processor.estimate_reading_time(text)} minutes")
         elif choice == "5":
-            print("\nThank you for using StudyMate AI !")
-            break
+            print("\n------ NOTE ANALYTICS ------")
 
+            analytics = NoteAnalytics(note_manager.get_notes())
+
+            print(f"Total notes: {analytics.total_notes()}")
+            print(f"Notes by subject: {analytics.notes_by_subject()}")
+            print(f"Notes by topic: {analytics.notes_by_topic()}")
+        elif choice == "6":
+            break;
         else:
             print("\nInvalid choice. Please try again.")
 
