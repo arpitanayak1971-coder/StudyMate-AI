@@ -1,13 +1,10 @@
 from src.study_planner import StudyPlanner
 from src.notes import NoteManager
 from src.analytics import NoteAnalytics
+from src.visualizer import StudyVisualizer
 from src.task_manager import TaskManager
 from src.text_processor import TextProcessor
 
-import numpy as np 
-#day 12
-print(np.arange(1,7))
-print ("hello")
 
 def get_positive_number(prompt):
     while True:
@@ -150,6 +147,7 @@ def main():
     planner = StudyPlanner()
     analytics = NoteAnalytics(note_manager.get_notes())
     processor=TextProcessor()
+    visualizer = StudyVisualizer()
 
     while True:
         print("\n============================== ")
@@ -160,7 +158,8 @@ def main():
         print("3. Study Planner")
         print("4. Text Analyzer")
         print("5. Note Analytics")
-        print("6. Exit")
+        print("6. Note visualization")
+        print("7.Exit")
 
         choice = input("Enter your choice: ")
 
@@ -202,7 +201,15 @@ def main():
             print(f"Notes by subject: {analytics.notes_by_subject()}")
             print(f"Notes by topic: {analytics.notes_by_topic()}")
         elif choice == "6":
-            break;
+            print("\n------ NOTE VISUALIZATION ------")
+
+            analytics = NoteAnalytics(note_manager.get_notes())
+
+            subject_data = analytics.notes_by_subject()
+
+            visualizer.plot_notes_by_subject(subject_data)
+        elif choice=="7":
+            break
         else:
             print("\nInvalid choice. Please try again.")
 
