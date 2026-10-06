@@ -1,3 +1,4 @@
+import numpy as np
 from src.study_planner import StudyPlanner
 from src.notes import NoteManager
 from src.analytics import NoteAnalytics
