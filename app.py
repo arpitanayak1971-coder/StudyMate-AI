@@ -202,12 +202,27 @@ def main():
             print(f"Notes by topic: {analytics.notes_by_topic()}")
         elif choice == "6":
             print("\n------ NOTE VISUALIZATION ------")
+            print("1. Notes by Subject")
+            print("2. Notes by Topic")
+            print("3. Back")
+
+            visualization_choice = input("Enter your choice: ")
 
             analytics = NoteAnalytics(note_manager.get_notes())
 
-            subject_data = analytics.notes_by_subject()
+            if visualization_choice == "1":
+                subject_data = analytics.notes_by_subject()
+                visualizer.plot_notes_by_subject(subject_data)
 
-            visualizer.plot_notes_by_subject(subject_data)
+            elif visualization_choice == "2":
+                topic_data = analytics.notes_by_topic()
+                visualizer.plot_notes_by_topic(topic_data)
+
+            elif visualization_choice == "3":
+                pass
+
+            else:
+                print("Invalid choice.")
         elif choice=="7":
             break
         else:
