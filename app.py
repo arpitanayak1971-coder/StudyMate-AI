@@ -5,8 +5,8 @@ from src.analytics import NoteAnalytics
 from src.visualizer import StudyVisualizer
 from src.task_manager import TaskManager
 from src.text_processor import TextProcessor
-
-#day 15
+print(np.arange(1,7))
+#day 16
 def get_positive_number(prompt):
     while True:
         try:
