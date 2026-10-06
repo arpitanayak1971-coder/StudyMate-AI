@@ -34,5 +34,4 @@ Each development stage is documented through GitHub commits.
 
 ## Author
 
-Arpita Nayak
-of College
+Arpita Nayak\
