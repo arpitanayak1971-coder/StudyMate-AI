@@ -105,3 +105,5 @@ StudyMate-AI/
 │   └── progress.py
 │
 └── tests/
+Author 
+Arpita Nayak
