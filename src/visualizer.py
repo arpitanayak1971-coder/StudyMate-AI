@@ -1,3 +1,4 @@
+
 import matplotlib.pyplot as plt
 
 
@@ -41,4 +42,28 @@ class StudyVisualizer:
         plt.xticks(rotation=45)
 
         plt.tight_layout()
+        plt.show()
+
+    def plot_task_progress(self, completed, pending):
+        total = completed + pending
+
+        if total == 0:
+            print("No tasks available for visualization.")
+            return
+
+        labels = ["Completed", "Pending"]
+        sizes = [completed, pending]
+
+        plt.figure(figsize=(6, 6))
+
+        plt.pie(
+            sizes,
+            labels=labels,
+            autopct="%1.1f%%",
+            startangle=90
+        )
+
+        plt.title("Study Task Progress")
+        plt.axis("equal")
+
         plt.show()

@@ -237,6 +237,26 @@ def main():
                 f"Completion: "
                 f"{progress.completion_percentage():.2f}%"
             )
+
+            print("\n1. View Progress Chart")
+            print("2. Back")
+
+            progress_choice = input("Enter your choice: ")
+
+            if progress_choice == "1":
+                completed = progress.completed_tasks()
+                pending = progress.pending_tasks()
+
+                visualizer.plot_task_progress(
+                    completed,
+                    pending
+                )
+
+            elif progress_choice == "2":
+                pass
+
+            else:
+                print("Invalid choice.")
         elif choice =="8":
             break
         else:
