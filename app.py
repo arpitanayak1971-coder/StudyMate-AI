@@ -5,6 +5,7 @@ from src.analytics import NoteAnalytics
 from src.visualizer import StudyVisualizer
 from src.task_manager import TaskManager
 from src.text_processor import TextProcessor
+from src.progress import StudyProgress 
 print(np.arange(1,7))
 #day 16
 def get_positive_number(prompt):
@@ -160,7 +161,8 @@ def main():
         print("4. Text Analyzer")
         print("5. Note Analytics")
         print("6. Note visualization")
-        print("7.Exit")
+        print("7.Study Progress")
+        print("8.Exit")
 
         choice = input("Enter your choice: ")
 
@@ -224,7 +226,19 @@ def main():
 
             else:
                 print("Invalid choice.")
-        elif choice=="7":
+        elif choice == "7":
+            print("\n------ STUDY PROGRESS ------")
+
+            progress = StudyProgress(task_manager.tasks)
+
+            print(f"Total tasks: {progress.total_tasks()}")
+            print(f"Completed tasks: {progress.completed_tasks()}")
+            print(f"Pending tasks: {progress.pending_tasks()}")
+            print(
+                f"Completion: "
+                f"{progress.completion_percentage():.2f}%"
+            )
+        elif choice =="8":
             break
         else:
             print("\nInvalid choice. Please try again.")
