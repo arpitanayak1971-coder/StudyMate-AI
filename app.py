@@ -5,7 +5,8 @@ from src.analytics import NoteAnalytics
 from src.visualizer import StudyVisualizer
 from src.task_manager import TaskManager
 from src.text_processor import TextProcessor
-from src.progress import StudyProgress 
+from src.progress import StudyProgress
+from src.session_tracker import StudySessionTracker
 #day 17
 def get_positive_number(prompt):
     while True:
@@ -142,6 +143,72 @@ def task_menu(task_manager):
             print("Invalid choice!")
 
 
+
+def study_sessions_menu(session_tracker):
+    while True:
+        print("\n------ STUDY SESSIONS ------")
+        print("1. Record Study Session")
+        print("2. View Study Sessions")
+        print("3. Study Time Analytics")
+        print("4. Back")
+
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            subject = input("Enter subject: ").strip()
+            topic = input("Enter topic: ").strip()
+
+            try:
+                duration = get_positive_number(
+                    "Enter study duration in minutes: "
+                )
+
+                session = session_tracker.add_session(
+                    subject, topic, duration
+                )
+
+                print(
+                    f"Session {session['id']} saved successfully!"
+                )
+
+            except ValueError as error:
+                print(f"Could not save session: {error}")
+
+        elif choice == "2":
+            sessions = session_tracker.get_sessions()
+
+            if not sessions:
+                print("No study sessions recorded yet.")
+            else:
+                for session in sessions:
+                    print(
+                        f"ID: {session['id']} | "
+                        f"Subject: {session['subject']} | "
+                        f"Topic: {session['topic']} | "
+                        f"Duration: {session['duration_minutes']} minutes | "
+                        f"Date: {session['date']}"
+                    )
+
+        elif choice == "3":
+            total = session_tracker.total_study_minutes()
+            print(f"Total study time: {total:g} minutes")
+            print("Study time by subject:")
+
+            subject_totals = session_tracker.study_time_by_subject()
+
+            if not subject_totals:
+                print("No study data available.")
+            else:
+                for subject, minutes in subject_totals.items():
+                    print(f"- {subject}: {minutes:g} minutes")
+
+        elif choice == "4":
+            break
+
+        else:
+            print("Invalid choice. Please try again.")
+
+
 def main():
     note_manager = NoteManager()
     task_manager = TaskManager()
@@ -149,6 +216,7 @@ def main():
     analytics = NoteAnalytics(note_manager.get_notes())
     processor=TextProcessor()
     visualizer = StudyVisualizer()
+    session_tracker = StudySessionTracker()
 
     while True:
         print("\n============================== ")
@@ -160,8 +228,9 @@ def main():
         print("4. Text Analyzer")
         print("5. Note Analytics")
         print("6. Note visualization")
-        print("7.Study Progress")
-        print("8.Exit")
+        print("7. Study Progress")
+        print("8. Study Sessions")
+        print("9. Exit")
 
         choice = input("Enter your choice: ")
 
@@ -257,7 +326,10 @@ def main():
 
             else:
                 print("Invalid choice.")
-        elif choice =="8":
+        elif choice == "8":
+            study_sessions_menu(session_tracker)
+
+        elif choice == "9":
             break
         else:
             print("\nInvalid choice. Please try again.")

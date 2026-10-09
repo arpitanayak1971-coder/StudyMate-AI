@@ -62,6 +62,14 @@ StudyMate AI aims to bring these activities together into one study assistant ap
 - Study task completion visualization.
 - Completed vs pending task analysis.
 
+### Study Session Tracking
+- Record study sessions by subject and topic.
+- Store study duration and timestamp.
+- View recorded sessions.
+- Calculate total study time.
+- Analyze study time by subject.
+- Persist sessions using JSON storage.
+
 ### Study Progress
 - Total tasks.
 - Completed tasks.
@@ -107,3 +115,8 @@ StudyMate-AI/
 └── tests/
 Author 
 Arpita Nayak
+
+
+## Day 19 Update
+
+Added persistent study session tracking and study-time analytics, including totals by subject.
