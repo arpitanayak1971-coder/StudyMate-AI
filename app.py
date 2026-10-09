@@ -144,13 +144,14 @@ def task_menu(task_manager):
 
 
 
-def study_sessions_menu(session_tracker):
+def study_sessions_menu(session_tracker, visualizer):
     while True:
         print("\n------ STUDY SESSIONS ------")
         print("1. Record Study Session")
         print("2. View Study Sessions")
         print("3. Study Time Analytics")
-        print("4. Back")
+        print("4. Visualize Study Time")
+        print("5. Back")
 
         choice = input("Enter your choice: ")
 
@@ -203,6 +204,10 @@ def study_sessions_menu(session_tracker):
                     print(f"- {subject}: {minutes:g} minutes")
 
         elif choice == "4":
+            subject_totals = session_tracker.study_time_by_subject()
+            visualizer.plot_study_time_by_subject(subject_totals)
+
+        elif choice == "5":
             break
 
         else:
@@ -327,7 +332,7 @@ def main():
             else:
                 print("Invalid choice.")
         elif choice == "8":
-            study_sessions_menu(session_tracker)
+            study_sessions_menu(session_tracker, visualizer)
 
         elif choice == "9":
             break

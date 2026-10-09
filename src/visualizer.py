@@ -67,3 +67,20 @@ class StudyVisualizer:
         plt.axis("equal")
 
         plt.show()
+
+    def plot_study_time_by_subject(self, subject_data):
+        if not subject_data:
+            print("No study session data available for visualization.")
+            return
+
+        subjects = list(subject_data.keys())
+        minutes = list(subject_data.values())
+
+        plt.figure(figsize=(8, 5))
+        plt.bar(subjects, minutes)
+        plt.title("Study Time by Subject")
+        plt.xlabel("Subject")
+        plt.ylabel("Study Time (minutes)")
+        plt.xticks(rotation=45)
+        plt.tight_layout()
+        plt.show()
