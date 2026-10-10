@@ -121,3 +121,11 @@ Arpita Nayak
 
 Added persistent study session tracking and study-time analytics, including totals by subject.
 3## day 20
+
+### Study Data Preprocessing
+- Convert study-session records into a Pandas DataFrame.
+- Clean whitespace from subject and topic fields.
+- Convert duration and date columns to appropriate data types.
+- Handle missing values and invalid dates.
+- Remove duplicate session IDs and invalid durations.
+- Preserve the original JSON data during preprocessing.
