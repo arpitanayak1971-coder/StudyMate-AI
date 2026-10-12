@@ -98,7 +98,8 @@ StudyMate-AI/
 │
 ├── data/
 │   ├── notes.json
-│   └── tasks.json
+│   ├── tasks.json
+│   └── sessions.json
 │
 ├── models/
 │
@@ -110,7 +111,10 @@ StudyMate-AI/
 │   ├── text_processor.py
 │   ├── analytics.py
 │   ├── visualizer.py
-│   └── progress.py
+│   ├── progress.py
+│   ├── session_tracker.py
+│   ├── data_preprocessor.py
+│   └── study_analytics.py
 │
 └── tests/
 Author 
@@ -120,13 +124,25 @@ Arpita Nayak
 ## Day 19 Update
 
 Added persistent study session tracking and study-time analytics, including totals by subject.
-3## day 20
 
-### Study Data Preprocessing
+## Day 20 Update — Study-Time Visualization
+
+- Added visualization of study time by subject.
+- Used Matplotlib to display study-time comparisons.
+
+## Day 21 Update — Study Data Preprocessing
+
 - Convert study-session records into a Pandas DataFrame.
 - Clean whitespace from subject and topic fields.
 - Convert duration and date columns to appropriate data types.
 - Handle missing values and invalid dates.
 - Remove duplicate session IDs and invalid durations.
 - Preserve the original JSON data during preprocessing.
-## day 21
+
+## Day 22 Update — Study Session Analytics
+
+- Calculate total study time and number of sessions.
+- Calculate average session duration.
+- Summarize study time by subject.
+- Identify the most-studied subject.
+- Handle empty datasets safely.
