@@ -146,3 +146,12 @@ Added persistent study session tracking and study-time analytics, including tota
 - Summarize study time by subject.
 - Identify the most-studied subject.
 - Handle empty datasets safely.
+
+## Day 23 Update — Daily Study Goal Tracking
+
+- Set and persist a daily study-time goal.
+- Calculate today's study time from recorded sessions.
+- Display remaining study time and goal completion percentage.
+- Identify when the daily goal has been achieved.
+- Validate goal values and handle days without study sessions.
+- Integrate Study Goals into the main application menu.

@@ -7,6 +7,7 @@ from src.task_manager import TaskManager
 from src.text_processor import TextProcessor
 from src.progress import StudyProgress
 from src.session_tracker import StudySessionTracker
+from src.study_goals import StudyGoalTracker
 #day 17
 def get_positive_number(prompt):
     while True:
@@ -214,6 +215,48 @@ def study_sessions_menu(session_tracker, visualizer):
             print("Invalid choice. Please try again.")
 
 
+
+def study_goals_menu(goal_tracker):
+    while True:
+        print("\n------ STUDY GOALS ------")
+        print("1. Set Daily Study Goal")
+        print("2. View Today's Progress")
+        print("3. Back")
+
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            try:
+                minutes = get_positive_number(
+                    "Enter daily study goal in minutes: "
+                )
+                goal_tracker.set_daily_goal(minutes)
+                print(f"Daily goal set to {minutes:g} minutes.")
+            except ValueError as error:
+                print(f"Could not set goal: {error}")
+
+        elif choice == "2":
+            progress = goal_tracker.get_goal_progress()
+            print(f"Daily goal: {progress['goal_minutes']:g} minutes")
+            print(f"Studied today: {progress['studied_minutes']:g} minutes")
+            print(f"Remaining: {progress['remaining_minutes']:g} minutes")
+            print(
+                f"Completion: "
+                f"{progress['completion_percentage']:.2f}%"
+            )
+
+            if progress["goal_achieved"]:
+                print("Congratulations! Daily goal achieved.")
+            else:
+                print("Keep going—you can still reach your goal.")
+
+        elif choice == "3":
+            break
+
+        else:
+            print("Invalid choice. Please try again.")
+
+
 def main():
     note_manager = NoteManager()
     task_manager = TaskManager()
@@ -222,6 +265,7 @@ def main():
     processor=TextProcessor()
     visualizer = StudyVisualizer()
     session_tracker = StudySessionTracker()
+    goal_tracker = StudyGoalTracker()
 
     while True:
         print("\n============================== ")
@@ -235,7 +279,8 @@ def main():
         print("6. Note visualization")
         print("7. Study Progress")
         print("8. Study Sessions")
-        print("9. Exit")
+        print("9. Study Goals")
+        print("10. Exit")
 
         choice = input("Enter your choice: ")
 
@@ -335,6 +380,9 @@ def main():
             study_sessions_menu(session_tracker, visualizer)
 
         elif choice == "9":
+            study_goals_menu(goal_tracker)
+
+        elif choice == "10":
             break
         else:
             print("\nInvalid choice. Please try again.")
