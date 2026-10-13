@@ -8,6 +8,8 @@ from src.text_processor import TextProcessor
 from src.progress import StudyProgress
 from src.session_tracker import StudySessionTracker
 from src.study_goals import StudyGoalTracker
+from src.data_preprocessor import StudyDataPreprocessor
+from src.weekly_analytics import WeeklyStudyAnalytics
 #day 17
 def get_positive_number(prompt):
     while True:
@@ -257,6 +259,38 @@ def study_goals_menu(goal_tracker):
             print("Invalid choice. Please try again.")
 
 
+
+def weekly_analytics_menu():
+    import json
+    from pathlib import Path
+
+    print("\n------ WEEKLY STUDY ANALYTICS ------")
+
+    session_path = Path("data/sessions.json")
+    if session_path.exists():
+        with session_path.open("r", encoding="utf-8") as file:
+            sessions = json.load(file)
+    else:
+        sessions = []
+
+    clean_data = StudyDataPreprocessor().preprocess_sessions(sessions)
+    analytics = WeeklyStudyAnalytics(clean_data)
+    daily_totals = analytics.daily_study_minutes()
+
+    for day, minutes in daily_totals.items():
+        print(f"{day}: {minutes:g} minutes")
+
+    print(f"\nWeekly total: {analytics.total_weekly_minutes():g} minutes")
+    print(f"Daily average: {analytics.average_daily_minutes():.2f} minutes")
+
+    productive_day = analytics.most_productive_day()
+    if productive_day is None:
+        print("Most productive day: No study sessions this week.")
+    else:
+        print(f"Most productive day: {productive_day}")
+
+
+
 def main():
     note_manager = NoteManager()
     task_manager = TaskManager()
@@ -280,7 +314,8 @@ def main():
         print("7. Study Progress")
         print("8. Study Sessions")
         print("9. Study Goals")
-        print("10. Exit")
+        print("10. Weekly Analytics")
+        print("11. Exit")
 
         choice = input("Enter your choice: ")
 
@@ -383,6 +418,9 @@ def main():
             study_goals_menu(goal_tracker)
 
         elif choice == "10":
+            weekly_analytics_menu()
+
+        elif choice == "11":
             break
         else:
             print("\nInvalid choice. Please try again.")

@@ -114,7 +114,8 @@ StudyMate-AI/
 │   ├── progress.py
 │   ├── session_tracker.py
 │   ├── data_preprocessor.py
-│   └── study_analytics.py
+│   ├── study_analytics.py
+│   └── weekly_analytics.py
 │
 └── tests/
 Author 
@@ -155,4 +156,12 @@ Added persistent study session tracking and study-time analytics, including tota
 - Identify when the daily goal has been achieved.
 - Validate goal values and handle days without study sessions.
 - Integrate Study Goals into the main application menu.
-## day 24
+
+## Day 24 Update — Weekly Study Analytics
+
+- Summarize study time for each day from Monday to Sunday.
+- Calculate total study time for the current week.
+- Calculate average daily study time across the week.
+- Identify the most productive day.
+- Handle empty datasets and invalid study-session records safely.
+- Integrate Weekly Analytics into the main application menu.
