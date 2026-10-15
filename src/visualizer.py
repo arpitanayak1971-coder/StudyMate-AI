@@ -84,3 +84,26 @@ class StudyVisualizer:
         plt.xticks(rotation=45)
         plt.tight_layout()
         plt.show()
+
+    def plot_weekly_study_time(self, daily_totals):
+        """Plot study minutes for each day of the week."""
+        if not daily_totals:
+            print("No weekly study data available for visualization.")
+            return
+
+        days = list(daily_totals.keys())
+        minutes = list(daily_totals.values())
+
+        if not any(minutes):
+            print("No study time recorded for this week.")
+            return
+
+        plt.figure(figsize=(9, 5))
+        plt.bar(days, minutes)
+
+        plt.title("Weekly Study Time")
+        plt.xlabel("Day")
+        plt.ylabel("Study Time (minutes)")
+        plt.xticks(rotation=30)
+        plt.tight_layout()
+        plt.show()

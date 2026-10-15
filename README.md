@@ -166,3 +166,10 @@ Added persistent study session tracking and study-time analytics, including tota
 - Handle empty datasets and invalid study-session records safely.
 - Integrate Weekly Analytics into the main application menu.
 ### day 25
+
+## Day 25 Update — Weekly Study-Time Visualization
+
+- Added a weekly study-time bar chart using Matplotlib.
+- Displayed daily study minutes from Monday through Sunday.
+- Handled weeks with no recorded study time.
+- Tested the chart with sample data and existing weekly analytics.
