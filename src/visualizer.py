@@ -107,3 +107,20 @@ class StudyVisualizer:
         plt.xticks(rotation=30)
         plt.tight_layout()
         plt.show()
+
+    def plot_goal_vs_actual(self, goal_minutes, actual_minutes):
+        """Compare today's study time with the daily study goal."""
+        if goal_minutes <= 0 or actual_minutes < 0:
+            print("Goal must be positive and study time cannot be negative.")
+            return
+
+        labels = ["Daily Goal", "Actual Study Time"]
+        values = [goal_minutes, actual_minutes]
+
+        plt.figure(figsize=(7, 5))
+        plt.bar(labels, values)
+
+        plt.title("Daily Study Goal vs Actual Study Time")
+        plt.ylabel("Study Time (minutes)")
+        plt.tight_layout()
+        plt.show()

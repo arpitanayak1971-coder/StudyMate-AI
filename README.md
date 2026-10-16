@@ -173,3 +173,10 @@ Added persistent study session tracking and study-time analytics, including tota
 - Displayed daily study minutes from Monday through Sunday.
 - Handled weeks with no recorded study time.
 - Tested the chart with sample data and existing weekly analytics.
+
+## Day 26 Update — Daily Study Goal Comparison
+
+- Added a chart comparing the daily study goal with actual study time.
+- Reused the existing StudyGoalTracker to load the saved goal and today's study duration.
+- Added validation for non-positive goals and negative study time.
+- Tested the chart with real tracker data and sample values.
