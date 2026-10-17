@@ -180,3 +180,15 @@ Added persistent study session tracking and study-time analytics, including tota
 - Reused the existing StudyGoalTracker to load the saved goal and today's study duration.
 - Added validation for non-positive goals and negative study time.
 - Tested the chart with real tracker data and sample values.
+
+
+## Day 27 Update — Monthly Study Analytics
+
+- Added a monthly study analytics module in `src/monthly_analytics.py`.
+- Calculate total study minutes and the number of sessions for a selected month.
+- Calculate average study-session duration.
+- Group monthly study time by subject.
+- Identify the most-studied subject for the selected month.
+- Filter records by both month and year.
+- Handle empty datasets, invalid dates, and non-positive durations.
+- Tested the module with sample data and edge cases.
