@@ -192,3 +192,11 @@ Added persistent study session tracking and study-time analytics, including tota
 - Filter records by both month and year.
 - Handle empty datasets, invalid dates, and non-positive durations.
 - Tested the module with sample data and edge cases.
+
+## Day 28 Update — Monthly Study-Time Visualization
+
+- Added a monthly study-time bar chart using Matplotlib.
+- Visualized study duration by subject for a selected month.
+- Integrated the chart with the existing MonthlyStudyAnalytics module.
+- Handled empty monthly data and months with no recorded study time.
+- Tested the visualization with sample data and saved study sessions.

@@ -124,3 +124,26 @@ class StudyVisualizer:
         plt.ylabel("Study Time (minutes)")
         plt.tight_layout()
         plt.show()
+
+    def plot_monthly_study_time(self, subject_data):
+        """Plot monthly study time for each subject."""
+        if not subject_data:
+            print("No monthly study data available for visualization.")
+            return
+
+        subjects = list(subject_data.keys())
+        minutes = list(subject_data.values())
+
+        if not any(minutes):
+            print("No study time recorded for this month.")
+            return
+
+        plt.figure(figsize=(9, 5))
+        plt.bar(subjects, minutes)
+
+        plt.title("Monthly Study Time by Subject")
+        plt.xlabel("Subject")
+        plt.ylabel("Study Time (minutes)")
+        plt.xticks(rotation=45)
+        plt.tight_layout()
+        plt.show()
