@@ -10,6 +10,8 @@ from src.session_tracker import StudySessionTracker
 from src.study_goals import StudyGoalTracker
 from src.data_preprocessor import StudyDataPreprocessor
 from src.weekly_analytics import WeeklyStudyAnalytics
+from src.monthly_report import MonthlyStudyReport
+from src.monthly_analytics import MonthlyStudyAnalytics
 #day 25
 def get_positive_number(prompt):
     while True:
@@ -291,6 +293,27 @@ def weekly_analytics_menu():
 
 
 
+
+
+def monthly_study_report_menu():
+    import json
+    from pathlib import Path
+
+    print("\n------ MONTHLY STUDY REPORT ------")
+
+    session_path = Path("data/sessions.json")
+
+    if session_path.exists():
+        with session_path.open("r", encoding="utf-8") as file:
+            sessions = json.load(file)
+    else:
+        sessions = []
+
+    clean_data = StudyDataPreprocessor().preprocess_sessions(sessions)
+    analytics = MonthlyStudyAnalytics(clean_data)
+    report = MonthlyStudyReport(analytics)
+    report.generate_report()
+
 def main():
     note_manager = NoteManager()
     task_manager = TaskManager()
@@ -315,7 +338,8 @@ def main():
         print("8. Study Sessions")
         print("9. Study Goals")
         print("10. Weekly Analytics")
-        print("11. Exit")
+        print("11. Monthly Study Report")
+        print("12. Exit")
 
         choice = input("Enter your choice: ")
 
@@ -421,6 +445,9 @@ def main():
             weekly_analytics_menu()
 
         elif choice == "11":
+            monthly_study_report_menu()
+
+        elif choice == "12":
             break
         else:
             print("\nInvalid choice. Please try again.")

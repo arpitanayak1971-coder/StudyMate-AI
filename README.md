@@ -200,3 +200,13 @@ Added persistent study session tracking and study-time analytics, including tota
 - Integrated the chart with the existing MonthlyStudyAnalytics module.
 - Handled empty monthly data and months with no recorded study time.
 - Tested the visualization with sample data and saved study sessions.
+
+## Day 29 Update — Monthly Study Performance Report
+
+- Added a monthly study performance report module.
+- Displayed total monthly study time and session count.
+- Calculated average study session duration.
+- Identified the most-studied subject.
+- Displayed study time grouped by subject.
+- Integrated the report into the main StudyMate AI menu.
+- Tested the report with sample data and actual saved study sessions.
