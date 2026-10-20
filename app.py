@@ -12,6 +12,8 @@ from src.data_preprocessor import StudyDataPreprocessor
 from src.weekly_analytics import WeeklyStudyAnalytics
 from src.monthly_report import MonthlyStudyReport
 from src.monthly_analytics import MonthlyStudyAnalytics
+from src.monthly_goal_report import MonthlyGoalReport
+from src.monthly_goals import MonthlyGoalTracker
 #day 25
 def get_positive_number(prompt):
     while True:
@@ -314,6 +316,52 @@ def monthly_study_report_menu():
     report = MonthlyStudyReport(analytics)
     report.generate_report()
 
+
+
+def monthly_goal_menu():
+    import json
+    from pathlib import Path
+
+    goal_tracker = MonthlyGoalTracker()
+
+    while True:
+        print("\n------ MONTHLY STUDY GOALS ------")
+        print("1. Set Monthly Study Goal")
+        print("2. View Goal vs Actual")
+        print("3. Back")
+
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            try:
+                minutes = get_positive_number(
+                    "Enter monthly study goal in minutes: "
+                )
+                goal_tracker.set_monthly_goal(minutes)
+                print(f"Monthly study goal set to {minutes:g} minutes.")
+            except ValueError as error:
+                print(f"Could not set goal: {error}")
+
+        elif choice == "2":
+            session_path = Path("data/sessions.json")
+
+            if session_path.exists():
+                with session_path.open("r", encoding="utf-8") as file:
+                    sessions = json.load(file)
+            else:
+                sessions = []
+
+            clean_data = StudyDataPreprocessor().preprocess_sessions(sessions)
+            analytics = MonthlyStudyAnalytics(clean_data)
+            report = MonthlyGoalReport(goal_tracker, analytics)
+            report.generate_report()
+
+        elif choice == "3":
+            break
+
+        else:
+            print("Invalid choice. Please try again.")
+
 def main():
     note_manager = NoteManager()
     task_manager = TaskManager()
@@ -339,7 +387,8 @@ def main():
         print("9. Study Goals")
         print("10. Weekly Analytics")
         print("11. Monthly Study Report")
-        print("12. Exit")
+        print("12. Monthly Study Goals")
+        print("13. Exit")
 
         choice = input("Enter your choice: ")
 
@@ -448,6 +497,9 @@ def main():
             monthly_study_report_menu()
 
         elif choice == "12":
+            monthly_goal_menu()
+
+        elif choice == "13":
             break
         else:
             print("\nInvalid choice. Please try again.")

@@ -211,3 +211,13 @@ Added persistent study session tracking and study-time analytics, including tota
 - Integrated the report into the main StudyMate AI menu.
 - Tested the report with sample data and actual saved study sessions.
 ## day 30
+
+## Day 30 Update — Monthly Study Goals and Goal Tracking
+
+- Added a monthly goal tracker with persistent JSON storage.
+- Stored goals separately for each month.
+- Added a monthly goal-versus-actual study report.
+- Calculated remaining study time and goal completion percentage.
+- Integrated monthly goal setting and reporting into the main menu.
+- Tested monthly goal storage and report calculations with sample data.
+- Verified the report using saved study sessions.
