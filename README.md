@@ -222,3 +222,11 @@ Added persistent study session tracking and study-time analytics, including tota
 - Tested monthly goal storage and report calculations with sample data.
 - Verified the report using saved study sessions.
 ##day 31
+
+## Day 31 Update — Monthly Goal Progress Visualization
+
+- Added a monthly goal-versus-actual study-time bar chart.
+- Displayed monthly target time and actual study time.
+- Calculated and displayed the monthly goal completion percentage.
+- Integrated the visualization into the Monthly Study Goals menu.
+- Tested the chart with sample values and actual saved study data.

@@ -328,7 +328,8 @@ def monthly_goal_menu():
         print("\n------ MONTHLY STUDY GOALS ------")
         print("1. Set Monthly Study Goal")
         print("2. View Goal vs Actual")
-        print("3. Back")
+        print("3. View Goal Progress Chart")
+        print("4. Back")
 
         choice = input("Enter your choice: ")
 
@@ -357,6 +358,23 @@ def monthly_goal_menu():
             report.generate_report()
 
         elif choice == "3":
+            session_path = Path("data/sessions.json")
+
+            if session_path.exists():
+                with session_path.open("r", encoding="utf-8") as file:
+                    sessions = json.load(file)
+            else:
+                sessions = []
+
+            clean_data = StudyDataPreprocessor().preprocess_sessions(sessions)
+            analytics = MonthlyStudyAnalytics(clean_data)
+            goal = goal_tracker.get_monthly_goal()
+            actual = analytics.total_monthly_minutes()
+
+            visualizer = StudyVisualizer()
+            visualizer.plot_monthly_goal_vs_actual(goal, actual)
+
+        elif choice == "4":
             break
 
         else:

@@ -125,6 +125,26 @@ class StudyVisualizer:
         plt.tight_layout()
         plt.show()
 
+
+    def plot_monthly_goal_vs_actual(self, goal_minutes, actual_minutes):
+        """Compare monthly study time with the monthly study goal."""
+        if goal_minutes <= 0 or actual_minutes < 0:
+            print("Goal must be positive and study time cannot be negative.")
+            return
+
+        labels = ["Monthly Goal", "Actual Study Time"]
+        values = [goal_minutes, actual_minutes]
+
+        plt.figure(figsize=(7, 5))
+        plt.bar(labels, values)
+        plt.title("Monthly Study Goal vs Actual Study Time")
+        plt.ylabel("Study Time (minutes)")
+        plt.tight_layout()
+        plt.show()
+
+        percentage = (actual_minutes / goal_minutes) * 100
+        print(f"Monthly goal completion: {percentage:.2f}%")
+
     def plot_monthly_study_time(self, subject_data):
         """Plot monthly study time for each subject."""
         if not subject_data:
