@@ -231,3 +231,11 @@ Added persistent study session tracking and study-time analytics, including tota
 - Integrated the visualization into the Monthly Study Goals menu.
 - Tested the chart with sample values and actual saved study data.
 ## day 32
+
+## Day 32 Update — Monthly Goal Achievement Insights
+
+- Created `src/monthly_goal_insights.py`.
+- Added monthly goal completion percentage and remaining-time calculations.
+- Categorized progress as Not Set, Just Started, Making Progress, Almost There, or Goal Achieved.
+- Integrated goal achievement insights into the Monthly Study Goals menu.
+- Tested progress calculations with multiple sample cases.

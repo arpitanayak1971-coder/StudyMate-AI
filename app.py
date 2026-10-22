@@ -14,6 +14,7 @@ from src.monthly_report import MonthlyStudyReport
 from src.monthly_analytics import MonthlyStudyAnalytics
 from src.monthly_goal_report import MonthlyGoalReport
 from src.monthly_goals import MonthlyGoalTracker
+from src.monthly_goal_insights import MonthlyGoalInsights
 #day 30 
 def get_positive_number(prompt):
     while True:
@@ -329,7 +330,8 @@ def monthly_goal_menu():
         print("1. Set Monthly Study Goal")
         print("2. View Goal vs Actual")
         print("3. View Goal Progress Chart")
-        print("4. Back")
+        print("4. View Goal Achievement Insights")
+        print("5. Back")
 
         choice = input("Enter your choice: ")
 
@@ -343,21 +345,7 @@ def monthly_goal_menu():
             except ValueError as error:
                 print(f"Could not set goal: {error}")
 
-        elif choice == "2":
-            session_path = Path("data/sessions.json")
-
-            if session_path.exists():
-                with session_path.open("r", encoding="utf-8") as file:
-                    sessions = json.load(file)
-            else:
-                sessions = []
-
-            clean_data = StudyDataPreprocessor().preprocess_sessions(sessions)
-            analytics = MonthlyStudyAnalytics(clean_data)
-            report = MonthlyGoalReport(goal_tracker, analytics)
-            report.generate_report()
-
-        elif choice == "3":
+        elif choice in ("2", "3", "4"):
             session_path = Path("data/sessions.json")
 
             if session_path.exists():
@@ -371,10 +359,32 @@ def monthly_goal_menu():
             goal = goal_tracker.get_monthly_goal()
             actual = analytics.total_monthly_minutes()
 
-            visualizer = StudyVisualizer()
-            visualizer.plot_monthly_goal_vs_actual(goal, actual)
+            if choice == "2":
+                report = MonthlyGoalReport(goal_tracker, analytics)
+                report.generate_report()
 
-        elif choice == "4":
+            elif choice == "3":
+                visualizer = StudyVisualizer()
+                visualizer.plot_monthly_goal_vs_actual(goal, actual)
+
+            elif choice == "4":
+                insights = MonthlyGoalInsights()
+                result = insights.analyze_progress(goal, actual)
+
+                print("\n====== MONTHLY GOAL ACHIEVEMENT INSIGHTS ======")
+                print(f"Goal: {goal:g} minutes")
+                print(f"Actual Study Time: {actual:g} minutes")
+                print(
+                    f"Completion: {result['completion_percentage']:.2f}%"
+                )
+                print(
+                    f"Remaining Study Time: "
+                    f"{result['remaining_minutes']:g} minutes"
+                )
+                print(f"Progress Status: {result['status']}")
+                print("================================================")
+
+        elif choice == "5":
             break
 
         else:
