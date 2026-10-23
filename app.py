@@ -1,4 +1,4 @@
-
+from src.monthly_performance_rating import MonthlyPerformanceRating
 from src.study_planner import StudyPlanner
 from src.notes import NoteManager
 from src.analytics import NoteAnalytics
@@ -215,7 +215,8 @@ def study_sessions_menu(session_tracker, visualizer):
             subject_totals = session_tracker.study_time_by_subject()
             visualizer.plot_study_time_by_subject(subject_totals)
 
-        elif choice == "5":
+
+        elif choice == "6":
             break
 
         else:
@@ -331,7 +332,8 @@ def monthly_goal_menu():
         print("2. View Goal vs Actual")
         print("3. View Goal Progress Chart")
         print("4. View Goal Achievement Insights")
-        print("5. Back")
+        print("5. View Monthly Performance Rating")
+        print("6. Back")
 
         choice = input("Enter your choice: ")
 
@@ -345,7 +347,7 @@ def monthly_goal_menu():
             except ValueError as error:
                 print(f"Could not set goal: {error}")
 
-        elif choice in ("2", "3", "4"):
+        elif choice in ("2", "3", "4", "5"):
             session_path = Path("data/sessions.json")
 
             if session_path.exists():
@@ -384,7 +386,22 @@ def monthly_goal_menu():
                 print(f"Progress Status: {result['status']}")
                 print("================================================")
 
-        elif choice == "5":
+            elif choice == "5":
+                session_count = analytics.total_monthly_sessions()
+                performance = MonthlyPerformanceRating()
+                result = performance.calculate_rating(
+                    goal, actual, session_count
+                )
+
+                print("\n====== MONTHLY STUDY PERFORMANCE ======")
+                print(f"Overall Score: {result['overall_score']}/100")
+                print(f"Performance Rating: {result['rating']}")
+                print(f"Goal Score: {result['goal_score']}/100")
+                print(f"Study Time Score: {result['time_score']}/100")
+                print(f"Session Score: {result['session_score']}/100")
+                print("=======================================")
+
+        elif choice == "6":
             break
 
         else:
