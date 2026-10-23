@@ -239,3 +239,19 @@ Added persistent study session tracking and study-time analytics, including tota
 - Categorized progress as Not Set, Just Started, Making Progress, Almost There, or Goal Achieved.
 - Integrated goal achievement insights into the Monthly Study Goals menu.
 - Tested progress calculations with multiple sample cases.
+### Day 33: Monthly Study Performance Rating
+
+**Objective:** Evaluate monthly study performance using a weighted scoring system.
+
+**Features implemented:**
+- Calculates monthly goal completion score.
+- Calculates study-time score using a 1,500-minute reference target.
+- Calculates study-session score using a 20-session reference target.
+- Combines the three scores using weighted contributions:
+  - Goal completion: 50%
+  - Study time: 30%
+  - Session count: 20%
+- Assigns a performance rating: Excellent, Very Good, Good, Needs Improvement, or Poor.
+- Integrates the rating feature into the Monthly Study Goals menu.
+
+**Testing:** Verified that the application displays the overall score, individual component scores, and performance rating.
