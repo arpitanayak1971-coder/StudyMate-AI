@@ -333,7 +333,8 @@ def monthly_goal_menu():
         print("3. View Goal Progress Chart")
         print("4. View Goal Achievement Insights")
         print("5. View Monthly Performance Rating")
-        print("6. Back")
+        print("6. View Monthly Performance History")
+        print("7. Back")
 
         choice = input("Enter your choice: ")
 
@@ -402,6 +403,25 @@ def monthly_goal_menu():
                 print("=======================================")
 
         elif choice == "6":
+            from src.monthly_performance_history import MonthlyPerformanceHistory
+
+            history_manager = MonthlyPerformanceHistory()
+            history_manager.display_history()
+
+            if len(history_manager.get_history()) >= 2:
+                compare = input("Compare two months? (y/n): ").strip().lower()
+
+                if compare == "y":
+                    month1 = input("First month (e.g. October): ").strip()
+                    year1 = int(input("First year: "))
+                    month2 = input("Second month (e.g. November): ").strip()
+                    year2 = int(input("Second year: "))
+
+                    history_manager.compare_months(
+                        month1, year1, month2, year2
+                    )
+
+        elif choice == "7":
             break
 
         else:

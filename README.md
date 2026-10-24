@@ -255,3 +255,24 @@ Added persistent study session tracking and study-time analytics, including tota
 - Integrates the rating feature into the Monthly Study Goals menu.
 
 **Testing:** Verified that the application displays the overall score, individual component scores, and performance rating.
+
+### Day 34: Monthly Study Performance History
+
+**Objective:** Maintain a history of monthly study performance and compare results across months.
+
+**Features implemented:**
+- Save monthly performance scores and ratings to a JSON file.
+- Store goal, study-time, and session scores with each record.
+- Update an existing record when the same month and year are saved again.
+- Display saved monthly performance records in a readable table.
+- Compare two months and calculate the score difference.
+- Report whether performance improved, declined, or remained unchanged.
+- Integrate performance history into the Monthly Study Goals menu.
+
+**Testing:**
+- Verified saving and retrieving monthly records.
+- Verified displaying the performance history.
+- Tested comparison using sample scores of 72 and 82, correctly reporting a 10-point improvement.
+- Checked Python syntax for the application and history module.
+
+**Note:** The November record used during testing is sample data.
