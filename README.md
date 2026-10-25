@@ -276,3 +276,21 @@ Added persistent study session tracking and study-time analytics, including tota
 - Checked Python syntax for the application and history module.
 
 **Note:** The November record used during testing is sample data.
+
+### Day 35: Monthly Performance Trend Visualization
+
+**Objective:** Visualize monthly study performance scores to track progress over time.
+
+**Features implemented:**
+- Plot monthly performance scores using Matplotlib.
+- Sort performance records chronologically.
+- Display scores on a 0–100 scale.
+- Annotate each point with its performance score.
+- Integrate the trend chart into the Monthly Study Goals menu.
+
+**Testing:**
+- Verified the chart using sample October and November records.
+- Confirmed scores of 72 and 82 display correctly.
+- Verified Python syntax for the application and visualization module.
+
+**Note:** The chart test used sample records, not actual study results.

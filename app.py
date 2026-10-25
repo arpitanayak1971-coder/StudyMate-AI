@@ -334,7 +334,8 @@ def monthly_goal_menu():
         print("4. View Goal Achievement Insights")
         print("5. View Monthly Performance Rating")
         print("6. View Monthly Performance History")
-        print("7. Back")
+        print("7. View Monthly Performance Trend")
+        print("8. Back")
 
         choice = input("Enter your choice: ")
 
@@ -422,6 +423,12 @@ def monthly_goal_menu():
                     )
 
         elif choice == "7":
+            from src.monthly_performance_visualizer import MonthlyPerformanceVisualizer
+
+            trend_visualizer = MonthlyPerformanceVisualizer()
+            trend_visualizer.plot_performance_trend()
+
+        elif choice == "8":
             break
 
         else:
