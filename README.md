@@ -294,3 +294,26 @@ Added persistent study session tracking and study-time analytics, including tota
 - Verified Python syntax for the application and visualization module.
 
 **Note:** The chart test used sample records, not actual study results.
+
+
+## Day 36: Performance Insights and Recommendations
+
+### Objective
+Provide personalized study recommendations based on monthly study performance.
+
+### Features Implemented
+- Generate recommendations based on goal achievement.
+- Evaluate study-time and study-session scores.
+- Display a performance summary using the overall score and rating.
+- Suggest practical actions to improve study habits.
+- Integrate recommendations into the Monthly Study Goals menu.
+
+### Testing
+- Verified Python syntax for the application and related modules.
+- Tested the recommendation engine with sample performance data.
+- Checked that recommendations respond to different performance scores.
+
+### Files Updated
+- `src/performance_recommendations.py`
+- `app.py`
+- `README.md`

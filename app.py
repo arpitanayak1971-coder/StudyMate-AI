@@ -335,7 +335,8 @@ def monthly_goal_menu():
         print("5. View Monthly Performance Rating")
         print("6. View Monthly Performance History")
         print("7. View Monthly Performance Trend")
-        print("8. Back")
+        print("8. Performance Recommendations")
+        print("9. Back")
 
         choice = input("Enter your choice: ")
 
@@ -429,6 +430,41 @@ def monthly_goal_menu():
             trend_visualizer.plot_performance_trend()
 
         elif choice == "8":
+            import json
+            from pathlib import Path
+            from src.performance_recommendations import PerformanceRecommendations
+
+            session_path = Path("data/sessions.json")
+            if session_path.exists():
+                with session_path.open("r", encoding="utf-8") as file:
+                    sessions = json.load(file)
+            else:
+                sessions = []
+
+            clean_data = StudyDataPreprocessor().preprocess_sessions(sessions)
+            analytics = MonthlyStudyAnalytics(clean_data)
+            goal = goal_tracker.get_monthly_goal()
+            actual = analytics.total_monthly_minutes()
+            session_count = analytics.total_monthly_sessions()
+
+            performance = MonthlyPerformanceRating()
+            result = performance.calculate_rating(goal, actual, session_count)
+
+            engine = PerformanceRecommendations()
+            insights = engine.generate_recommendations(result)
+
+            print("\n====== PERFORMANCE RECOMMENDATIONS ======")
+            print(f"Performance Rating: {insights['rating']}")
+            print(f"Overall Score: {insights['overall_score']}/100")
+            print(f"Summary: {insights['summary']}")
+            print("\nRecommended Actions:")
+            for number, recommendation in enumerate(
+                insights["recommendations"], start=1
+            ):
+                print(f"{number}. {recommendation}")
+            print("=========================================")
+
+        elif choice == "9":
             break
 
         else:
