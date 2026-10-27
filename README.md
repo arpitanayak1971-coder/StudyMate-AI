@@ -317,3 +317,31 @@ Provide personalized study recommendations based on monthly study performance.
 - `src/performance_recommendations.py`
 - `app.py`
 - `README.md`
+## Day 37: Study Performance Improvement Tracker
+
+### Objective
+Develop a tracker to help users manage and monitor their study improvement tasks.
+
+### Features Implemented
+- Add personalized study improvement tasks.
+- Display all tasks with their current status.
+- Mark tasks as completed using their task IDs.
+- Display total, completed, and pending tasks.
+- Calculate the task completion percentage.
+- Store task information in a JSON file for persistence.
+- Integrate the tracker into the main StudyMate AI menu.
+
+### Testing
+- Tested task creation and retrieval.
+- Verified pending and completed task statuses.
+- Tested marking a task as completed.
+- Verified progress summary calculations.
+- Confirmed the tracker returns to the main application menu.
+
+### Files Added or Updated
+- `src/improvement_tracker.py`
+- `app.py`
+- `README.md`
+
+### Outcome
+The Study Improvement Tracker enables users to record improvement tasks and monitor their completion progress within StudyMate AI.
