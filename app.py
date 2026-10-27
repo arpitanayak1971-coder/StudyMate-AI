@@ -470,6 +470,72 @@ def monthly_goal_menu():
         else:
             print("Invalid choice. Please try again.")
 
+def improvement_tracker_menu():
+    from src.improvement_tracker import ImprovementTracker
+
+    tracker = ImprovementTracker()
+
+    while True:
+        print("\n------ STUDY IMPROVEMENT TRACKER ------")
+        print("1. Add Improvement Task")
+        print("2. View Improvement Tasks")
+        print("3. Mark Task as Completed")
+        print("4. View Progress Summary")
+        print("5. Back")
+
+        choice = input("Enter your choice: ").strip()
+
+        if choice == "1":
+            description = input("Enter improvement task: ")
+            try:
+                task = tracker.add_task(description)
+                print(f"Task added successfully. ID: {task['id']}")
+            except ValueError as error:
+                print(f"Error: {error}")
+
+        elif choice == "2":
+            tasks = tracker.get_tasks()
+
+            if not tasks:
+                print("No improvement tasks found.")
+            else:
+                print("\n------ IMPROVEMENT TASKS ------")
+                for task in tasks:
+                    status = "Completed" if task["completed"] else "Pending"
+                    print(
+                        f"{task['id']}. {task['description']} "
+                        f"[{status}]"
+                    )
+
+        elif choice == "3":
+            try:
+                task_id = int(input("Enter task ID to complete: "))
+                if tracker.mark_completed(task_id):
+                    print("Task marked as completed.")
+                else:
+                    print("Task ID not found.")
+            except ValueError:
+                print("Please enter a valid numeric task ID.")
+
+        elif choice == "4":
+            tasks = tracker.get_tasks()
+            total = len(tasks)
+            completed = sum(1 for task in tasks if task["completed"])
+            pending = total - completed
+            percentage = (completed / total * 100) if total else 0
+
+            print("\n------ IMPROVEMENT PROGRESS ------")
+            print(f"Total Tasks: {total}")
+            print(f"Completed: {completed}")
+            print(f"Pending: {pending}")
+            print(f"Completion Rate: {percentage:.1f}%")
+
+        elif choice == "5":
+            break
+
+        else:
+            print("Invalid choice. Please try again.")
+
 def main():
     note_manager = NoteManager()
     task_manager = TaskManager()
@@ -496,7 +562,8 @@ def main():
         print("10. Weekly Analytics")
         print("11. Monthly Study Report")
         print("12. Monthly Study Goals")
-        print("13. Exit")
+        print("13.Study Improvement Tracker")
+        print("14. Exit")
 
         choice = input("Enter your choice: ")
 
@@ -608,6 +675,9 @@ def main():
             monthly_goal_menu()
 
         elif choice == "13":
+            improvement_tracker_menu()
+            break
+        elif choice=="14":
             break
         else:
             print("\nInvalid choice. Please try again.")
