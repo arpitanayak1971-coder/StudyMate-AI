@@ -481,7 +481,8 @@ def improvement_tracker_menu():
         print("2. View Improvement Tasks")
         print("3. Mark Task as Completed")
         print("4. View Progress Summary")
-        print("5. Back")
+        print("5. View Improvement Analytics")
+        print("6. Back")
 
         choice = input("Enter your choice: ").strip()
 
@@ -531,6 +532,13 @@ def improvement_tracker_menu():
             print(f"Completion Rate: {percentage:.1f}%")
 
         elif choice == "5":
+            from src.improvement_analytics import ImprovementAnalytics
+
+            analytics = ImprovementAnalytics(tracker.get_tasks())
+            analytics.display_summary()
+            analytics.plot_progress()
+
+        elif choice == "6":
             break
 
         else:

@@ -345,3 +345,26 @@ Develop a tracker to help users manage and monitor their study improvement tasks
 
 ### Outcome
 The Study Improvement Tracker enables users to record improvement tasks and monitor their completion progress within StudyMate AI.
+
+
+## Day 38: Study Improvement Analytics Dashboard
+
+### Objective
+Analyze study improvement task completion and visualize progress.
+
+### Features Implemented
+- Calculate total, completed, and pending tasks.
+- Calculate task completion percentage.
+- Display an improvement progress summary.
+- Visualize completed versus pending tasks using Matplotlib.
+- Integrate analytics into the Study Improvement Tracker menu.
+
+### Testing
+- Tested analytics with sample tasks.
+- Verified task counts and completion percentage.
+- Checked Python syntax and menu integration.
+
+### Files Added or Updated
+- `src/improvement_analytics.py`
+- `app.py`
+- `README.md`
