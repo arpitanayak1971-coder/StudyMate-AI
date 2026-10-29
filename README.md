@@ -368,3 +368,29 @@ Analyze study improvement task completion and visualize progress.
 - `src/improvement_analytics.py`
 - `app.py`
 - `README.md`
+
+
+## Day 39: Study Improvement History Tracker
+
+### Objective
+Record and visualize study improvement progress over time.
+
+### Features Implemented
+- Save dated snapshots of improvement task progress.
+- Store total, completed, and pending task counts.
+- Calculate the completion percentage for each snapshot.
+- Display saved progress history.
+- Visualize completion-rate trends using Matplotlib.
+- Integrate snapshot recording and history viewing into the tracker menu.
+
+### Testing
+- Verified snapshot creation and JSON persistence.
+- Tested task count and completion-rate calculations.
+- Tested history display and trend visualization.
+- Verified integration with the Study Improvement Tracker menu.
+
+### Files Added or Updated
+- `src/improvement_history.py`
+- `src/improvement_history_visualizer.py`
+- `app.py`
+- `README.md`

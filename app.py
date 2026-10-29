@@ -482,7 +482,9 @@ def improvement_tracker_menu():
         print("3. Mark Task as Completed")
         print("4. View Progress Summary")
         print("5. View Improvement Analytics")
-        print("6. Back")
+        print("6. Record Improvement Snapshot")
+        print("7. View Improvement History Trend")
+        print("8. Back")
 
         choice = input("Enter your choice: ").strip()
 
@@ -539,6 +541,34 @@ def improvement_tracker_menu():
             analytics.plot_progress()
 
         elif choice == "6":
+            from src.improvement_history import ImprovementHistory
+
+            history = ImprovementHistory()
+            snapshot = history.record_snapshot(tracker.get_tasks())
+
+            print("\\nImprovement snapshot saved:")
+            print(f"Date: {snapshot['date']}")
+            print(f"Total Tasks: {snapshot['total']}")
+            print(f"Completed: {snapshot['completed']}")
+            print(f"Pending: {snapshot['pending']}")
+            print(
+                f"Completion Rate: "
+                f"{snapshot['completion_percentage']:.2f}%"
+            )
+
+        elif choice == "7":
+            from src.improvement_history import ImprovementHistory
+            from src.improvement_history_visualizer import (
+                ImprovementHistoryVisualizer
+            )
+
+            history = ImprovementHistory()
+            history.display_history()
+
+            visualizer = ImprovementHistoryVisualizer(history)
+            visualizer.plot_completion_trend()
+
+        elif choice == "8":
             break
 
         else:
