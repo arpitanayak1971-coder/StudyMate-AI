@@ -394,3 +394,29 @@ Record and visualize study improvement progress over time.
 - `src/improvement_history_visualizer.py`
 - `app.py`
 - `README.md`
+
+
+## Day 40: Study Improvement Comparison Report
+
+### Objective
+Compare the latest study improvement snapshots to understand progress over time.
+
+### Features Implemented
+- Compare the latest two progress snapshots.
+- Calculate changes in completed tasks.
+- Calculate changes in pending tasks.
+- Calculate the difference in completion percentage.
+- Display whether study progress improved, declined, or remained unchanged.
+- Integrate comparison functionality into the Study Improvement Tracker menu.
+
+### Testing
+- Tested comparison using sample snapshot data.
+- Verified completed and pending task differences.
+- Verified completion percentage calculations.
+- Tested the application integration.
+- Verified the warning when fewer than two snapshots exist.
+
+### Files Added or Updated
+- src/improvement_comparison.py
+- app.py
+- README.md

@@ -1,3 +1,7 @@
+from src.improvement_tracker import ImprovementTracker
+from src.improvement_history import ImprovementHistory
+from src.improvement_comparison import ImprovementComparison
+
 from src.monthly_performance_rating import MonthlyPerformanceRating
 from src.study_planner import StudyPlanner
 from src.notes import NoteManager
@@ -15,7 +19,8 @@ from src.monthly_analytics import MonthlyStudyAnalytics
 from src.monthly_goal_report import MonthlyGoalReport
 from src.monthly_goals import MonthlyGoalTracker
 from src.monthly_goal_insights import MonthlyGoalInsights
-#day 30 
+
+#day 30
 def get_positive_number(prompt):
     while True:
         try:
@@ -471,7 +476,6 @@ def monthly_goal_menu():
             print("Invalid choice. Please try again.")
 
 def improvement_tracker_menu():
-    from src.improvement_tracker import ImprovementTracker
 
     tracker = ImprovementTracker()
 
@@ -484,7 +488,8 @@ def improvement_tracker_menu():
         print("5. View Improvement Analytics")
         print("6. Record Improvement Snapshot")
         print("7. View Improvement History Trend")
-        print("8. Back")
+        print("8. Compare Latest Progress")
+        print("9. Back")
 
         choice = input("Enter your choice: ").strip()
 
@@ -541,7 +546,6 @@ def improvement_tracker_menu():
             analytics.plot_progress()
 
         elif choice == "6":
-            from src.improvement_history import ImprovementHistory
 
             history = ImprovementHistory()
             snapshot = history.record_snapshot(tracker.get_tasks())
@@ -557,10 +561,7 @@ def improvement_tracker_menu():
             )
 
         elif choice == "7":
-            from src.improvement_history import ImprovementHistory
-            from src.improvement_history_visualizer import (
-                ImprovementHistoryVisualizer
-            )
+
 
             history = ImprovementHistory()
             history.display_history()
@@ -569,6 +570,13 @@ def improvement_tracker_menu():
             visualizer.plot_completion_trend()
 
         elif choice == "8":
+            history = ImprovementHistory()
+            records = history.get_history()
+
+            comparison = ImprovementComparison(records)
+            comparison.display_comparison()
+
+        elif choice == "9":
             break
 
         else:
@@ -583,6 +591,7 @@ def main():
     visualizer = StudyVisualizer()
     session_tracker = StudySessionTracker()
     goal_tracker = StudyGoalTracker()
+    tracker = ImprovementTracker()
 
     while True:
         print("\n============================== ")
