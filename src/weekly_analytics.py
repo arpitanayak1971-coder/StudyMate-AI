@@ -69,3 +69,79 @@ class WeeklyStudyAnalytics:
             return None
 
         return max(daily_totals, key=daily_totals.get)
+
+    def least_productive_day(self, reference_date=None):
+        daily_totals = self.daily_study_minutes(reference_date)
+        studied_days = {
+            day: minutes for day, minutes in daily_totals.items()
+            if minutes > 0
+        }
+
+        if not studied_days:
+            return None
+
+        return min(studied_days, key=studied_days.get)
+
+    def study_consistency(self, reference_date=None):
+        daily_totals = self.daily_study_minutes(reference_date)
+        active_days = sum(1 for minutes in daily_totals.values() if minutes > 0)
+
+        return {
+            "active_days": active_days,
+            "total_days": 7,
+            "consistency_percentage": round((active_days / 7) * 100, 2)
+        }
+
+    def weekly_performance_score(self, weekly_goal_minutes=600,
+                                 reference_date=None):
+        if weekly_goal_minutes <= 0:
+            raise ValueError("Weekly goal must be greater than zero.")
+
+        total = self.total_weekly_minutes(reference_date)
+        score = min((total / weekly_goal_minutes) * 100, 100)
+
+        return {
+            "score": round(score, 2),
+            "goal_minutes": weekly_goal_minutes,
+            "studied_minutes": round(total, 2),
+            "goal_achieved": total >= weekly_goal_minutes
+        }
+
+    def weekly_recommendations(self, weekly_goal_minutes=600,
+                               reference_date=None):
+        total = self.total_weekly_minutes(reference_date)
+        consistency = self.study_consistency(reference_date)
+        daily_totals = self.daily_study_minutes(reference_date)
+
+        recommendations = []
+
+        if total == 0:
+            recommendations.append(
+                "No study sessions recorded this week. Start with a short session."
+            )
+        elif total < weekly_goal_minutes:
+            remaining = weekly_goal_minutes - total
+            recommendations.append(
+                f"Study {remaining:.0f} more minutes to reach your weekly goal."
+            )
+        else:
+            recommendations.append(
+                "Great work! You achieved your weekly study goal."
+            )
+
+        if consistency["active_days"] < 5:
+            recommendations.append(
+                "Try studying on at least five days each week."
+            )
+
+        if daily_totals and max(daily_totals.values()) > 0:
+            best_day = max(daily_totals, key=daily_totals.get)
+            worst_day = self.least_productive_day(reference_date)
+
+            if worst_day:
+                recommendations.append(
+                    f"Improve your study routine on {worst_day}."
+                )
+
+        return recommendations
+

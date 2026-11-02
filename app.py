@@ -301,8 +301,9 @@ def study_goals_menu(goal_tracker):
 def weekly_analytics_menu():
     import json
     from pathlib import Path
+    from src.study_goals import StudyGoalTracker
 
-    print("\n------ WEEKLY STUDY ANALYTICS ------")
+    print("\n------ WEEKLY STUDY PERFORMANCE ANALYTICS ------")
 
     session_path = Path("data/sessions.json")
     if session_path.exists():
@@ -313,8 +314,13 @@ def weekly_analytics_menu():
 
     clean_data = StudyDataPreprocessor().preprocess_sessions(sessions)
     analytics = WeeklyStudyAnalytics(clean_data)
+
+    goal_tracker = StudyGoalTracker()
+    weekly_goal = goal_tracker.weekly_goal_minutes
+
     daily_totals = analytics.daily_study_minutes()
 
+    print("\nDAILY STUDY BREAKDOWN")
     for day, minutes in daily_totals.items():
         print(f"{day}: {minutes:g} minutes")
 
@@ -322,12 +328,30 @@ def weekly_analytics_menu():
     print(f"Daily average: {analytics.average_daily_minutes():.2f} minutes")
 
     productive_day = analytics.most_productive_day()
-    if productive_day is None:
-        print("Most productive day: No study sessions this week.")
-    else:
-        print(f"Most productive day: {productive_day}")
+    least_day = analytics.least_productive_day()
 
+    print("\nPRODUCTIVITY ANALYSIS")
+    print(f"Most productive day: {productive_day or 'No study sessions'}")
+    print(f"Least productive day: {least_day or 'No study sessions'}")
 
+    consistency = analytics.study_consistency()
+    print("\nSTUDY CONSISTENCY")
+    print(
+        f"Active days: {consistency['active_days']}/7 "
+        f"({consistency['consistency_percentage']}%)"
+    )
+
+    performance = analytics.weekly_performance_score(weekly_goal)
+
+    print("\nWEEKLY PERFORMANCE SCORE")
+    print(f"Performance score: {performance['score']}/100")
+    print(f"Weekly goal: {performance['goal_minutes']} minutes")
+    print(f"Studied: {performance['studied_minutes']} minutes")
+    print(f"Goal achieved: {'Yes' if performance['goal_achieved'] else 'No'}")
+
+    print("\nPERSONALIZED RECOMMENDATIONS")
+    for recommendation in analytics.weekly_recommendations(weekly_goal):
+        print("-", recommendation)
 
 
 

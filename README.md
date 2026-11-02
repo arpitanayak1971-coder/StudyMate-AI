@@ -471,3 +471,32 @@ Compare the latest study improvement snapshots to understand progress over time.
 - `app.py`
 - `README.md`
 
+
+
+## Day 43: Weekly Study Performance Analytics
+
+### Features Added
+- Weekly performance score based on weekly study goal completion.
+- Study consistency percentage based on active study days.
+- Identification of the most productive day.
+- Identification of the least productive day.
+- Personalized weekly study recommendations.
+- Daily study breakdown from Monday to Sunday.
+
+### Technologies Used
+- Python
+- Pandas
+- JSON
+- Datetime
+
+### Files Updated
+- `src/weekly_analytics.py`
+- `app.py`
+- `README.md`
+
+### Testing
+- Tested weekly performance score calculation.
+- Tested study consistency calculation.
+- Tested productive and least productive day identification.
+- Tested personalized recommendations.
+- Connected and tested weekly analytics through the main application menu.
