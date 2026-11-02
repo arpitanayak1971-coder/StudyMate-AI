@@ -439,3 +439,35 @@ Compare the latest study improvement snapshots to understand progress over time.
 
 ### Files Added
 - `src/improvement_insights.py`
+
+
+## Day 42: Weekly Study Goal Tracking
+
+### Features Implemented
+- Added weekly study goal setting.
+- Added automatic weekly study-time calculation.
+- Added weekly goal progress tracking.
+- Calculates completed study time, remaining time, and completion percentage.
+- Displays whether the weekly study goal has been achieved.
+- Preserved existing daily study goal functionality.
+- Stores daily and weekly goals in the same JSON file.
+- Connected main menu options 9, 10, 11, and 12 to their respective features.
+- Added a Back option to the Monthly Study Goals submenu.
+
+### Technologies Used
+- Python
+- JSON for goal data storage
+- datetime and timedelta for date and weekly calculations
+
+### Testing
+- Tested daily goal tracking.
+- Tested weekly goal setting and progress calculation.
+- Tested main menu navigation.
+- Tested Monthly Study Goals submenu navigation.
+- Verified Python syntax.
+
+### Files Updated
+- `src/study_goals.py`
+- `app.py`
+- `README.md`
+

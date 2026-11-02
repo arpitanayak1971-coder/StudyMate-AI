@@ -236,6 +236,8 @@ def study_goals_menu(goal_tracker):
         print("1. Set Daily Study Goal")
         print("2. View Today's Progress")
         print("3. Back")
+        print("4. Set Weekly Study Goal")
+        print("5. View Weekly Progress")
 
         choice = input("Enter your choice: ")
 
@@ -263,6 +265,30 @@ def study_goals_menu(goal_tracker):
                 print("Congratulations! Daily goal achieved.")
             else:
                 print("Keep going—you can still reach your goal.")
+
+        elif choice == "4":
+            try:
+                minutes = get_positive_number(
+                    "Enter weekly study goal in minutes: "
+                )
+                goal_tracker.set_weekly_goal(minutes)
+                print(f"Weekly goal set to {minutes:g} minutes.")
+            except ValueError as error:
+                print(f"Could not set weekly goal: {error}")
+
+        elif choice == "5":
+            progress = goal_tracker.get_weekly_goal_progress()
+
+            print("\n------ WEEKLY STUDY PROGRESS ------")
+            print(f"Weekly Goal: {progress['goal_minutes']:g} minutes")
+            print(f"Studied: {progress['studied_minutes']:g} minutes")
+            print(f"Remaining: {progress['remaining_minutes']:g} minutes")
+            print(f"Completion: {progress['completion_percentage']:.2f}%")
+
+            if progress["goal_achieved"]:
+                print("Congratulations! Weekly goal achieved.")
+            else:
+                print("Keep going! You can still reach your weekly goal.")
 
         elif choice == "3":
             break
@@ -342,6 +368,7 @@ def monthly_goal_menu():
         print("6. View Monthly Performance History")
         print("7. View Monthly Performance Trend")
         print("8. Performance Recommendations")
+        print("9. Back")
 
         choice = input("Enter your choice: ")
 
@@ -470,7 +497,7 @@ def monthly_goal_menu():
             print("=========================================")
 
 
-        elif choice == "10":
+        elif choice == "9":
             break
 
         else:
@@ -716,6 +743,18 @@ def main():
                 print("Invalid choice.")
         elif choice == "8":
             study_sessions_menu(session_tracker, visualizer)
+
+        elif choice == "9":
+            study_goals_menu(goal_tracker)
+
+        elif choice == "10":
+            weekly_analytics_menu()
+
+        elif choice == "11":
+            monthly_study_report_menu()
+
+        elif choice == "12":
+            monthly_goal_menu()
 
         elif choice == "13":
             improvement_tracker_menu()
