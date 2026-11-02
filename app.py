@@ -1,3 +1,4 @@
+from src.improvement_insights import ImprovementInsights
 from src.improvement_tracker import ImprovementTracker
 from src.improvement_history import ImprovementHistory
 from src.improvement_comparison import ImprovementComparison
@@ -341,7 +342,6 @@ def monthly_goal_menu():
         print("6. View Monthly Performance History")
         print("7. View Monthly Performance Trend")
         print("8. Performance Recommendations")
-        print("9. Back")
 
         choice = input("Enter your choice: ")
 
@@ -469,7 +469,8 @@ def monthly_goal_menu():
                 print(f"{number}. {recommendation}")
             print("=========================================")
 
-        elif choice == "9":
+
+        elif choice == "10":
             break
 
         else:
@@ -489,7 +490,8 @@ def improvement_tracker_menu():
         print("6. Record Improvement Snapshot")
         print("7. View Improvement History Trend")
         print("8. Compare Latest Progress")
-        print("9. Back")
+        print("9. View Smart Improvement Insights")
+        print("10. Back")
 
         choice = input("Enter your choice: ").strip()
 
@@ -577,6 +579,12 @@ def improvement_tracker_menu():
             comparison.display_comparison()
 
         elif choice == "9":
+            history = ImprovementHistory()
+            records = history.get_history()
+            insights = ImprovementInsights(records)
+            insights.display_insights()
+
+        elif choice == "10":
             break
 
         else:
@@ -709,25 +717,16 @@ def main():
         elif choice == "8":
             study_sessions_menu(session_tracker, visualizer)
 
-        elif choice == "9":
-            study_goals_menu(goal_tracker)
-
-        elif choice == "10":
-            weekly_analytics_menu()
-
-        elif choice == "11":
-            monthly_study_report_menu()
-
-        elif choice == "12":
-            monthly_goal_menu()
-
         elif choice == "13":
             improvement_tracker_menu()
+
+        elif choice == "14":
+            print("Thank you for using StudyMate AI!")
             break
-        elif choice=="14":
-            break
+
         else:
-            print("\nInvalid choice. Please try again.")
+            print("Invalid choice. Please try again.")
+
 
 
 if __name__ == "__main__":
