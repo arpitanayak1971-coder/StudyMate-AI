@@ -500,3 +500,31 @@ Compare the latest study improvement snapshots to understand progress over time.
 - Tested productive and least productive day identification.
 - Tested personalized recommendations.
 - Connected and tested weekly analytics through the main application menu.
+
+
+## Day 44: Smart Subject Balance Analyzer
+
+### Objective
+Analyze how study time is distributed across different subjects and identify subjects that need more attention.
+
+### Features
+- Calculates total study time.
+- Displays subject-wise study-time percentages.
+- Identifies the most and least studied subjects.
+- Calculates a subject balance score out of 100.
+- Generates recommendations for improving study balance.
+- Handles insufficient data when fewer than two subjects have recorded study time.
+
+### Technologies Used
+- Python
+- Object-Oriented Programming
+- Dictionaries and mathematical calculations
+
+### Files Added or Updated
+- `src/subject_balance.py`
+- `app.py`
+- `README.md`
+
+### Testing
+Tested using sample study data and integrated with actual study-session records in the StudyMate AI application.
+

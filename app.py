@@ -1,3 +1,4 @@
+from src.subject_balance import SubjectBalanceAnalyzer
 from src.improvement_insights import ImprovementInsights
 from src.improvement_tracker import ImprovementTracker
 from src.improvement_history import ImprovementHistory
@@ -669,7 +670,8 @@ def main():
         print("11. Monthly Study Report")
         print("12. Monthly Study Goals")
         print("13.Study Improvement Tracker")
-        print("14. Exit")
+        print("14. Subject Balance Analyzer")
+        print("15. Exit")
 
         choice = input("Enter your choice: ")
 
@@ -784,6 +786,25 @@ def main():
             improvement_tracker_menu()
 
         elif choice == "14":
+            subject_data = session_tracker.study_time_by_subject()
+            analyzer = SubjectBalanceAnalyzer(subject_data)
+            print("\n------ SUBJECT BALANCE ANALYSIS ------")
+            print(f"Total study time: {analyzer.total_study_time():g} minutes")
+            print("\nSubject distribution:")
+            for subject, percentage in analyzer.subject_distribution().items():
+                print(f"- {subject}: {percentage}%")
+            print(f"\nMost studied subject: {analyzer.most_studied_subject()}")
+            print(f"Least studied subject: {analyzer.least_studied_subject()}")
+            score = analyzer.balance_score()
+            if score is None:
+                print("\nBalance score: Not enough subject data")
+            else:
+                print(f"\nBalance score: {score}/100")
+            print("\nRecommendations:")
+            for recommendation in analyzer.recommendations():
+                print(f"- {recommendation}")
+
+        elif choice == "15":
             print("Thank you for using StudyMate AI!")
             break
 
